@@ -24,10 +24,8 @@ public class BookController {
         model.addAttribute("books", repository.findAll());
         return "booklist";
     }
-    
-    @RequestMapping(
-        value = "/addbook"
-    )
+
+    @RequestMapping(value = "/addbook")
     public String addBook(Model model){
         model.addAttribute("book", new Book());
         return "addbook";
