@@ -1,12 +1,14 @@
 package fi.haagahelia.bookstore;
 
 import org.springframework.boot.CommandLineRunner;
+import fi.haagahelia.bookstore.domain.Category;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookRepository;
+import fi.haagahelia.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -16,7 +18,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
+	public CommandLineRunner bookDemo(BookRepository repository, CategoryRepository cRepository) {
 		return (args) -> {
 			// Your code...add some demo data to db
 
@@ -31,7 +33,17 @@ public class BookstoreApplication {
         this.isbn = isbn;
         this.price = price;
     }
-*/
+*/			
+			Category category1 = new Category("Sciencefiction");
+			Category category2 = new Category("Fantasy");
+			Category category3 = new Category("Romance");
+			Category category4 = new Category("Horror");
+
+			cRepository.save(category1);
+			cRepository.save(category2);
+			cRepository.save(category3);
+			cRepository.save(category4);
+					
 		// NOW IT IS ALL CORRECT HERE YOU JUST NEED TO CREATE BOOK OBJECTS LIKE YOU
 		// DID IN PROGRAMMING 1 AND PROGRAMMING 2. BOOK OBJECTS CAN BE CREATED ANY WAY
 		// YOU LIKE BUT THEY CANNOT HAVE ID
@@ -42,6 +54,7 @@ public class BookstoreApplication {
 			book1.setPublicationYear(2001);
 			book1.setIsbn("9780313304859");
 			book1.setPrice(29.95);
+			book1.setCategory(category4);
 			// HERE SHOULD BE repository INSTEAD OF BookRepository, the name is from
 			// the parameter
 			repository.save(book1);
@@ -52,7 +65,9 @@ public class BookstoreApplication {
 			book2.setPublicationYear(2012);
 			book2.setIsbn("9786047703166");
 			book2.setPrice(24.95);
+			book2.setCategory(category1);
 			repository.save(book2);
+			
 
 			Book book3 = new Book();
 			book3.setTitle("Viet Nam: Tradition and Change");
@@ -60,7 +75,9 @@ public class BookstoreApplication {
 			book3.setPublicationYear(2016);
 			book3.setIsbn("9780896803022");
 			book3.setPrice(24.95);
+			book3.setCategory(category2);
 			repository.save(book3);
+
 
 			Book book4 = new Book();
 			book4.setTitle("Vietnamese Food and Food Culture");
@@ -68,6 +85,7 @@ public class BookstoreApplication {
 			book4.setPublicationYear(2025);
 			book4.setIsbn("9780804857413");
 			book4.setPrice(24.99);
+			book4.setCategory(category1);
 			repository.save(book4);
 
 			Book book5 = new Book();
@@ -76,6 +94,7 @@ public class BookstoreApplication {
 			book5.setPublicationYear(2003);
 			book5.setIsbn("9781859958605");
 			book5.setPrice(34.95);
+			book5.setCategory(category3);
 			repository.save(book5);
 			// JUST REMEMBER ALWAYS TO HAVE THIS SAVE COMMAND LIKE YOU
 			// ARE HAVING FOR BOOK ON LINE 47

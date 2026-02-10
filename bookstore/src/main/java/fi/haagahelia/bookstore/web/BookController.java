@@ -8,13 +8,18 @@ import org.springframework.ui.Model;
 
 import fi.haagahelia.bookstore.domain.Book;
 import fi.haagahelia.bookstore.domain.BookRepository;
+import fi.haagahelia.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
-
+    
     private BookRepository repository;
-    public BookController(BookRepository repository){
+    
+    private CategoryRepository cRepository;
+
+    public BookController(BookRepository repository, CategoryRepository cRepository){
         this.repository = repository;
+        this.cRepository = cRepository;
     }
 
     @RequestMapping(
@@ -29,12 +34,14 @@ public class BookController {
     @RequestMapping(value = "/addbook")
     public String addBook(Model model){
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", cRepository.findAll());
         return "addbook";
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editBook(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("book", repository.findById(id).get());
+        model.addAttribute("categories", cRepository.findAll());
         return "addbook";
     }     
     
