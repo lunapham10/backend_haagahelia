@@ -2,6 +2,8 @@ package fi.haagahelia.bookstore.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,9 +15,10 @@ import jakarta.persistence.OneToMany;
 public class Category {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private Long categoryId;
     private String name;
 
+    @JsonIgnoreProperties("category")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Book> books;
 
@@ -27,12 +30,7 @@ public class Category {
         this.name = name;
     }
     
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
     public String getName() {
         return name;
     }
@@ -47,10 +45,18 @@ public class Category {
         this.books = books;
     }
     
+    
     @Override
-
     public String toString() {
-        return "Category [id=" + id + ", name=" + name + "]";
+        return "Category [categoryid=" + categoryId + ", name=" + name + ", books=" + books + "]";
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryid) {
+        this.categoryId = categoryid;
     }
 
     
