@@ -48,7 +48,7 @@ public class Category {
     
     @Override
     public String toString() {
-        return "Category [categoryid=" + categoryId + ", name=" + name + ", books=" + books + "]";
+        return "Category [categoryid=" + categoryId + ", name=" + name + "]";
     }
 
     public Long getCategoryId() {

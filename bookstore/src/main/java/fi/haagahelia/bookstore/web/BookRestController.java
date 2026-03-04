@@ -13,8 +13,7 @@ import fi.haagahelia.bookstore.domain.BookRepository;
 //import fi.haagahelia.bookstore.domain.CategoryRepository;
 import java.util.List;
 import java.util.Optional;
-import java.util.Locale.Category;
-
+import fi.haagahelia.bookstore.domain.Category;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
